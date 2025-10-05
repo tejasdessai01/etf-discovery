@@ -1,0 +1,21 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Etf {
+  id            String   @id @default(cuid())
+  ticker        String   @unique
+  name          String
+  issuer        String?
+  category      String?
+  expenseBps    Int?
+  aumUSD        BigInt?  // store as integer for now
+  inceptionDate DateTime?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
