@@ -1,11 +1,10 @@
 generator client {
-  provider = "prisma-client-js"
+  provider = "postgresql"
 }
 
 datasource db {
-  provider   = "postgresql"
-  url        = env("DATABASE_URL")
-  directUrl  = env("DIRECT_URL")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 model Etf {
@@ -15,7 +14,7 @@ model Etf {
   issuer        String?
   category      String?
   expenseBps    Int?
-  aumUSD        BigInt?  @db.BigInt
+  aumUSD        BigInt?  // store as integer for now
   inceptionDate DateTime?
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
